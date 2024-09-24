@@ -1,0 +1,50 @@
+diff --git a/node_modules/@ionic-enterprise/identity-vault/.DS_Store b/node_modules/@ionic-enterprise/identity-vault/.DS_Store
+new file mode 100644
+index 0000000..a7946d5
+Binary files /dev/null and b/node_modules/@ionic-enterprise/identity-vault/.DS_Store differ
+diff --git a/node_modules/@ionic-enterprise/identity-vault/plugin.xml b/node_modules/@ionic-enterprise/identity-vault/plugin.xml
+index 29c31d4..67205ea 100644
+--- a/node_modules/@ionic-enterprise/identity-vault/plugin.xml
++++ b/node_modules/@ionic-enterprise/identity-vault/plugin.xml
+@@ -24,6 +24,7 @@
+         <config-file target="AndroidManifest.xml" parent="/manifest/application">
+             <activity android:name="com.ionicframework.auth.BiometricActivity" android:theme="@style/Transparent"/>
+         </config-file>
++        <lib-file src="src/android/libs/br-android-vault.aar"/>
+         <framework src="src/android/ionicnativeauth.gradle" custom="true" type="gradleReference"/>
+         <source-file src="src/android/com/ionicframework/auth/IonicNativeAuth.java" target-dir="src/com/ionicframework/auth"/>
+         <source-file src="src/android/com/ionicframework/auth/AuthConfig.java" target-dir="src/com/ionicframework/auth"/>
+diff --git a/node_modules/@ionic-enterprise/identity-vault/src/.DS_Store b/node_modules/@ionic-enterprise/identity-vault/src/.DS_Store
+new file mode 100644
+index 0000000..9a3ce04
+Binary files /dev/null and b/node_modules/@ionic-enterprise/identity-vault/src/.DS_Store differ
+diff --git a/node_modules/@ionic-enterprise/identity-vault/src/android/.DS_Store b/node_modules/@ionic-enterprise/identity-vault/src/android/.DS_Store
+new file mode 100644
+index 0000000..c10dbcd
+Binary files /dev/null and b/node_modules/@ionic-enterprise/identity-vault/src/android/.DS_Store differ
+diff --git a/node_modules/@ionic-enterprise/identity-vault/src/android/ionicnativeauth.gradle b/node_modules/@ionic-enterprise/identity-vault/src/android/ionicnativeauth.gradle
+index bc3e032..34c7b93 100644
+--- a/node_modules/@ionic-enterprise/identity-vault/src/android/ionicnativeauth.gradle
++++ b/node_modules/@ionic-enterprise/identity-vault/src/android/ionicnativeauth.gradle
+@@ -1,13 +1,14 @@
+ repositories{
+-  jcenter()
++  mavenCentral()
+   flatDir {
+       dirs 'libs'
+    }
+ }
+ 
+ dependencies {
+-   api 'com.bottlerocketstudios:vault:1.4.2'
+-   implementation 'android.arch.lifecycle:extensions:1.1.1'
++   api(name:'br-android-vault', ext:'aar')
++   implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
++   implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "androidx.biometric:biometric:1.0.1"
+ }
+ 
+diff --git a/node_modules/@ionic-enterprise/identity-vault/src/android/libs/br-android-vault.aar b/node_modules/@ionic-enterprise/identity-vault/src/android/libs/br-android-vault.aar
+new file mode 100644
+index 0000000..83e39c8
+Binary files /dev/null and b/node_modules/@ionic-enterprise/identity-vault/src/android/libs/br-android-vault.aar differ
